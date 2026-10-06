@@ -26,3 +26,9 @@ SELECT MAX(price_per_night) AS highest_price FROM room_types;
 -- 7. Number of bookings in November
 SELECT COUNT(*) AS november_bookings FROM bookings
 WHERE check_in_date >= '2026-11-01';
+
+-- 8. Bookings with guest names and room numbers (JOIN across 3 tables)
+SELECT bookings.booking_id, guests.first_name, guests.last_name, rooms.room_number, bookings.check_in_date
+FROM bookings
+JOIN guests ON bookings.guest_id = guests.guest_id
+JOIN rooms ON bookings.room_id = rooms.room_id;
