@@ -32,3 +32,10 @@ SELECT bookings.booking_id, guests.first_name, guests.last_name, rooms.room_numb
 FROM bookings
 JOIN guests ON bookings.guest_id = guests.guest_id
 JOIN rooms ON bookings.room_id = rooms.room_id;
+
+-- 9. Rooms free between 5 and 7 October (subquery with NOT IN)
+SELECT room_number FROM rooms
+WHERE room_id NOT IN (SELECT room_id FROM bookings
+                      WHERE check_in_date < '2026-10-07'
+                      AND check_out_date > '2026-10-05');
+
