@@ -39,3 +39,23 @@ WHERE room_id NOT IN (SELECT room_id FROM bookings
                       WHERE check_in_date < '2026-10-07'
                       AND check_out_date > '2026-10-05');
 
+-- 10. Number of payments per payment method
+SELECT payment_method, COUNT(*) AS number_of_payments
+FROM payments 
+GROUP BY payment_method
+ORDER BY payment_method;
+
+-- 11. How many bookings does each room have.
+SELECT room_id, COUNT(*) AS number_of_bookings
+FROM bookings
+GROUP BY room_id
+ORDER BY room_id;
+
+-- 12. Number of bookings per room number, most booked first (JOIN + GROUP BY)
+SELECT rooms.room_number, COUNT(*) AS number_of_bookings
+FROM bookings
+JOIN rooms ON bookings.room_id = rooms.room_id
+GROUP BY rooms.room_id
+ORDER BY number_of_bookings DESC;
+
+
