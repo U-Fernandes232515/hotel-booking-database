@@ -58,4 +58,12 @@ JOIN rooms ON bookings.room_id = rooms.room_id
 GROUP BY rooms.room_id
 ORDER BY number_of_bookings DESC;
 
+-- 13. Most-booked room type
+SELECT room_types.type_name, COUNT(*) AS number_of_bookings
+FROM bookings
+JOIN rooms ON bookings.room_id = rooms.room_id
+JOIN room_types ON rooms.room_type_id = room_types.room_type_id
+GROUP BY room_types.type_name
+ORDER BY number_of_bookings DESC;
+
 
