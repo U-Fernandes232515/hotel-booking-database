@@ -73,4 +73,22 @@ JOIN room_types ON rooms.room_type_id = room_types.room_type_id
 GROUP BY room_types.type_name
 ORDER BY number_of_rooms DESC;
 
+-- 15. Guests who have stayed more than once (JOIN + GROUP BY + HAVING)
+
+-- A. how many bookings does each guest have?
+SELECT guests.first_name, guests.last_name, COUNT(*) AS number_of_bookings
+FROM bookings
+JOIN guests ON bookings.guest_id = guests.guest_id
+GROUP BY guests.first_name, guests.last_name
+ORDER BY number_of_bookings DESC;
+
+-- B. Show only guests with MORE than 1 booking
+SELECT guests.first_name, guests.last_name, COUNT(*) AS number_of_bookings
+FROM guests
+JOIN bookings ON guests.guest_id = bookings.guest_id
+GROUP BY guests.first_name, guests.last_name
+HAVING COUNT(*) > 1
+ORDER BY number_of_bookings DESC;
+
+
 
