@@ -90,5 +90,21 @@ GROUP BY guests.first_name, guests.last_name
 HAVING COUNT(*) > 1
 ORDER BY number_of_bookings DESC;
 
+-- 16. Total revenue per month and year
+SELECT payment_date, strftime('%Y-%m', payment_date) AS month
+FROM payments;
+
+-- 16. a) Total revenue per month
+SELECT strftime('%Y-%m', payment_date) AS month, SUM(amount) AS total_revenue
+FROM payments
+GROUP BY month
+ORDER BY total_revenue DESC;
+
+-- 16. b) Total revenue per year
+SELECT strftime('%Y', payment_date) AS year, SUM(amount) AS total_revenue
+FROM payments
+GROUP BY year
+ORDER BY total_revenue DESC;
+
 
 
