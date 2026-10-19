@@ -66,4 +66,11 @@ JOIN room_types ON rooms.room_type_id = room_types.room_type_id
 GROUP BY room_types.type_name
 ORDER BY number_of_bookings DESC;
 
+-- 14. How many rooms of each room type?
+SELECT room_types.type_name, COUNT(*) AS number_of_rooms
+FROM rooms
+JOIN room_types ON rooms.room_type_id = room_types.room_type_id
+GROUP BY room_types.type_name
+ORDER BY number_of_rooms DESC;
+
 
